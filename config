@@ -1,0 +1,12 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = true
+	symlinks = false
+	ignorecase = true
+	sharedrepository = 2
+[receive]
+	denyNonFastforwards = true
+[remote "Livraria"]
+	url = https://github.com/guiziii/LivrariaIparty.git
+	fetch = +refs/heads/*:refs/remotes/Livraria/*
