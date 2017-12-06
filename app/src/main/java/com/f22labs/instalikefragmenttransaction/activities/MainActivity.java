@@ -3,6 +3,7 @@ package com.f22labs.instalikefragmenttransaction.activities;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import com.f22labs.instalikefragmenttransaction.fragments.HomeFragment;
 import com.f22labs.instalikefragmenttransaction.fragments.ShareFragment;
 import com.f22labs.instalikefragmenttransaction.fragments.ProfileFragment;
 import com.f22labs.instalikefragmenttransaction.fragments.SearchFragment;
+import com.f22labs.instalikefragmenttransaction.fragments.Tab1;
 import com.f22labs.instalikefragmenttransaction.utils.FragmentHistory;
 import com.f22labs.instalikefragmenttransaction.utils.Utils;
 import com.f22labs.instalikefragmenttransaction.views.FragNavController;
@@ -271,13 +273,19 @@ public class MainActivity extends BaseActivity implements BaseFragment.FragmentN
 
         }
     }
-
+    public void switchContent(android.support.v4.app.Fragment fragment) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content_frame, fragment);
+        //ft.show(fragment);
+        //ft.addToBackStack(null);
+        ft.commit();
+    }
     @Override
     public Fragment getRootFragment(int index) {
         switch (index) {
 
             case FragNavController.TAB1:
-                return new HomeFragment();
+                return new Tab1();
             case FragNavController.TAB2:
                 return new SearchFragment();
             case FragNavController.TAB3:
