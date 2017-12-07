@@ -53,20 +53,24 @@ import java.util.List;
 
 //                                             LISTA PRINCIPAL
 
-public class Tab1 extends Fragment implements RecyclerViewOnClickListenerHack{
+public class Tab1 extends Fragment implements RecyclerViewOnClickListenerHack
+{
     private FragmentTabHost mTabHost;
     private OnItemClickListener mListener;
 
-    public interface OnItemClickListener {
+    public interface OnItemClickListener
+    {
         public void onItemClick(View view, int position);
     }
     @Override
-    public void onClickListener(View view, int position) {
+    public void onClickListener(View view, int position)
+    {
 
     }
 
     @Override
-    public void onLongPressClickListener(View view, int position) {
+    public void onLongPressClickListener(View view, int position)
+    {
 
     }
 

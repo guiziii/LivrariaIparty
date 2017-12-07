@@ -20,6 +20,7 @@ import com.f22labs.instalikefragmenttransaction.fragments.ProfileFragment;
 import com.f22labs.instalikefragmenttransaction.fragments.SearchFragment;
 import com.f22labs.instalikefragmenttransaction.fragments.Tab1;
 import com.f22labs.instalikefragmenttransaction.utils.FragmentHistory;
+import com.f22labs.instalikefragmenttransaction.utils.Static;
 import com.f22labs.instalikefragmenttransaction.utils.Utils;
 import com.f22labs.instalikefragmenttransaction.views.FragNavController;
 
@@ -271,21 +272,20 @@ public class MainActivity extends BaseActivity implements BaseFragment.FragmentN
 
             updateToolbar();
 
+
         }
     }
     public void switchContent(android.support.v4.app.Fragment fragment) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.content_frame, fragment);
-        //ft.show(fragment);
-        //ft.addToBackStack(null);
-        ft.commit();
+        mNavController.pushFragment(fragment);
+
+
     }
     @Override
     public Fragment getRootFragment(int index) {
         switch (index) {
 
             case FragNavController.TAB1:
-                return new Tab1();
+                return new HomeFragment();
             case FragNavController.TAB2:
                 return new SearchFragment();
             case FragNavController.TAB3:
@@ -294,6 +294,7 @@ public class MainActivity extends BaseActivity implements BaseFragment.FragmentN
                 return new NewsFragment();
             case FragNavController.TAB5:
                 return new ProfileFragment();
+
 
 
         }
@@ -313,6 +314,9 @@ public class MainActivity extends BaseActivity implements BaseFragment.FragmentN
 
 
         getSupportActionBar().setTitle(title);
+
+             getSupportActionBar().setSubtitle("O seu aplicativo de eventos");
+
 
     }
 }

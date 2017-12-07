@@ -13,13 +13,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class ProfileFragment extends BaseFragment{
+public class ProfileFragment extends BaseFragment
+{
 
 
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
     }
 

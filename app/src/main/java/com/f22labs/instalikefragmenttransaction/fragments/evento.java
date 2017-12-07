@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
@@ -26,6 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import com.f22labs.instalikefragmenttransaction.R;
+import com.f22labs.instalikefragmenttransaction.activities.MainActivity;
 import com.f22labs.instalikefragmenttransaction.adapters.ConfigRetrieve;
 import com.f22labs.instalikefragmenttransaction.adapters.ConfigRetrieveCliente;
 import com.f22labs.instalikefragmenttransaction.adapters.ServerImageParseAdapter;
@@ -43,82 +45,17 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import butterknife.ButterKnife;
 
-public class evento extends Fragment
+
+public class evento extends BaseFragment
 {
-    private FragmentTabHost mTabHost=null;
-    //region Desnecessário no momento
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-    public evento() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment evento.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static evento newInstance(String param1, String param2) {
-        evento fragment = new evento();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
 
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-    //endregion
     TextView NomeEvento,DataEvento,Horaevento,DescEvento,PrecoEvento,DistanciaE,EnderecoE,CriadorE;
     String idcli;
+
+    int fragCount;
 
     private Toolbar mToolbar;
     ImageLoader imageLoader1;
@@ -130,18 +67,20 @@ public class evento extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null)
-        {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
+    public static evento newInstance(int instance) {
+        Bundle args = new Bundle();
+        args.putInt(ARGS_INSTANCE, instance);
+        evento fragment = new evento();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
-        final View view = inflater.inflate(R.layout.fragment_evento, container, false);
+         View view = inflater.inflate(R.layout.fragment_evento, container, false);
 
         NomeEvento = (TextView)view.findViewById(R.id.txtNomeEvento);
         DataEvento = (TextView)view.findViewById(R.id.txtData);
@@ -152,14 +91,7 @@ public class evento extends Fragment
         EnderecoE = (TextView)view.findViewById(R.id.txtEnderecoE);
         CriadorE = (TextView)view.findViewById(R.id.txtCriadorE);
         networkImageView2=(NetworkImageView)view.findViewById(R.id.VollyEspecifico);
-        //DescEvento.setTypeface(EasyFonts.freedom(getActivity()));
 
-
-      //  mToolbar = (Toolbar) getActivity().findViewById(R.id.tb_main);
-//        mToolbar.setLogo(null);
-
-
-        //mToolbar.setVisibility(view.VISIBLE);
 
 
         getData();
@@ -167,9 +99,23 @@ public class evento extends Fragment
 
 
 
-//        ((ActionBarActivity)getActivity()).getSupportActionBar().show();
+
+        ButterKnife.bind(this, view);
+
+
 
         return view;
+    }
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
+    {
+        super.onViewCreated(view, savedInstanceState);
+
+
+
+
+
+
     }
 
     private void getData()
@@ -208,7 +154,7 @@ public class evento extends Fragment
     {
 
 
-       // loading = ProgressDialog.show(getActivity(), "Carregando informações do evento!", "Por favor, aguarde", false, false);
+
 
         String url = ConfigRetrieveCliente.DATA_URL+idcli;
 
@@ -286,7 +232,8 @@ public class evento extends Fragment
         Horaevento.setText(hora);
         PrecoEvento.setText(preco);
         EnderecoE.setText(" "+endereco);
-        idcli =id;
+        ( (MainActivity)getActivity()).updateToolbarTitle((fragCount == 0) ? name: "Sub News "+fragCount);
+                idcli =id;
         getData1();
        // new JsonTask().execute("https://maps.googleapis.com/maps/api/directions/json?origin="+latitude.toString().replace(" ", "")+','+longitude.toString().replace(" ", "")+"&destination=-23.2349128,-45.8990308");
         new JsonTask().execute("https://maps.googleapis.com/maps/api/directions/json?origin=" + longitude.toString().replace(" ", "") + ',' + latitude.toString().replace(" ", "") + "&destination=" + Static.getLatitude() + "," + Static.getLongitude() + "");
@@ -339,6 +286,7 @@ public class evento extends Fragment
             e.printStackTrace();
         }
       CriadorE.setText(" "+name);
+
 
     }
 

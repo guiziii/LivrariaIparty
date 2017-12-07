@@ -16,6 +16,8 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.f22labs.instalikefragmenttransaction.R;
 import com.f22labs.instalikefragmenttransaction.activities.MainActivity;
+import com.f22labs.instalikefragmenttransaction.fragments.BaseFragment;
+import com.f22labs.instalikefragmenttransaction.fragments.NewsFragment;
 import com.f22labs.instalikefragmenttransaction.fragments.evento;
 import com.f22labs.instalikefragmenttransaction.utils.Static;
 

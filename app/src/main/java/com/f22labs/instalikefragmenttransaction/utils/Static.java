@@ -14,6 +14,7 @@ public class Static
     static boolean face;
     static String latitude,longitude;
     static String Estado,Cidade;
+    static String Subtitle;
 
 
 
@@ -83,6 +84,14 @@ public class Static
     static String nome;
     static String email;
     static String idface;
+
+    public static String getSubtitle() {
+        return Subtitle;
+    }
+
+    public static void setSubtitle(String subtitle) {
+        Subtitle = subtitle;
+    }
 
 //endregion
 
