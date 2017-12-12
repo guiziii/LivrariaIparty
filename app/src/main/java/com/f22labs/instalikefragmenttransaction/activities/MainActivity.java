@@ -19,6 +19,7 @@ import com.f22labs.instalikefragmenttransaction.fragments.ShareFragment;
 import com.f22labs.instalikefragmenttransaction.fragments.ProfileFragment;
 import com.f22labs.instalikefragmenttransaction.fragments.SearchFragment;
 import com.f22labs.instalikefragmenttransaction.fragments.Tab1;
+import com.f22labs.instalikefragmenttransaction.fragments.Tab2;
 import com.f22labs.instalikefragmenttransaction.utils.FragmentHistory;
 import com.f22labs.instalikefragmenttransaction.utils.Static;
 import com.f22labs.instalikefragmenttransaction.utils.Utils;
@@ -287,7 +288,7 @@ public class MainActivity extends BaseActivity implements BaseFragment.FragmentN
             case FragNavController.TAB1:
                 return new HomeFragment();
             case FragNavController.TAB2:
-                return new SearchFragment();
+                return new Tab2();
             case FragNavController.TAB3:
                 return new ShareFragment();
             case FragNavController.TAB4:
