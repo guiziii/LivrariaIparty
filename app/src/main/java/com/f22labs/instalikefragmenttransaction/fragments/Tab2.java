@@ -192,6 +192,7 @@ public class Tab2 extends BaseFragment implements RecyclerViewOnClickListenerHac
         ButterKnife.bind(this, view);
 
         ( (MainActivity)getActivity()).updateToolbarTitle("Pesquise o seu evento");
+        ( (MainActivity)getActivity()).updateToolbarSubTitle("Procure eventos pelo nome");
 
         return view;
     }

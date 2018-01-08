@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">InstaLikeFragmentTransaction</string>
+    <string name="app_name">iParty</string>
 
     <array name="tab_name">
         <item>Home</item>
@@ -8,6 +8,7 @@
         <item>News</item>
         <item>Profile</item>
     </array>
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>

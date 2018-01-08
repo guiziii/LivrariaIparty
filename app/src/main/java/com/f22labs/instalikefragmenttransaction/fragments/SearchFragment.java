@@ -34,6 +34,7 @@ public class SearchFragment extends BaseFragment{
         ( (MainActivity)getActivity()).updateToolbarTitle("Search");
 
 
+
         return view;
     }
 
